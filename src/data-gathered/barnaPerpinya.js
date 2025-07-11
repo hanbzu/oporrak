@@ -1,0 +1,108 @@
+export default [
+  {
+    trainNameSrc: "AVE 9737",
+    operatorSrc: "RENFE",
+    scheduleSrc: [
+      { sta: "Barcelona Sants", dep: "08:19" },
+      { sta: "Girona", arr: "08:58", dep: "09:01" },
+      { sta: "Figueres Vilafant", arr: "09:15", dep: "09:18" },
+      { sta: "Perpignan", arr: "09:43", dep: "09:52" },
+      { sta: "Narbonne", arr: "10:26", dep: "10:29" },
+      { sta: "Montpellier Saint-Roch", arr: "11:20", dep: "11:29" },
+      { sta: "Nîmes", arr: "11:56", dep: "12:00" },
+      { sta: "Valence TGV Rhône-Alpes Sud", arr: "12:43", dep: "12:46" },
+      { sta: "Lyon Part Dieu", arr: "13:20" },
+    ],
+    validity: ["20241215", "20251213"],
+    runsSrc:
+      "\nDays of operation:\nruns  3. Apr until 23. Nov 2025; not 19., 20., 26. Apr\n",
+    commentsSrc:
+      "\nComments:\nSubject to compulsory reservation\nspace for wheelchairs\nGlobal price\nCompartment for disabled travellers\n",
+  },
+  {
+    trainNameSrc: "TGV 9708",
+    operatorSrc: "SNCF",
+    scheduleSrc: [
+      { sta: "Barcelona Sants", dep: "09:28" },
+      { sta: "Girona", dep: "10:10" },
+      { sta: "Figueres Vilafant", dep: "10:27" },
+      { sta: "Perpignan", arr: "10:52", dep: "11:02" },
+      { sta: "Narbonne", arr: "11:37", dep: "11:40" },
+      { sta: "Beziers", arr: "11:54", dep: "11:57" },
+      { sta: "Montpellier Sud de France", arr: "12:47", dep: "12:54" },
+      { sta: "Nîmes Pont du Gard", arr: "13:14", dep: "13:17" },
+      { sta: "Valence TGV Rhône-Alpes Sud", arr: "13:55", dep: "13:58" },
+      { sta: "Paris Gare de Lyon", arr: "16:12" },
+    ],
+    validity: ["20241215", "20251213"],
+    runsSrc:
+      "\nDays of operation:\nruns  11. Jul until 8. Aug 2025 Fr; also 3. until 19. Apr 2025, 21. Apr until 1. May 2025, 14., 22., 29. Aug\n",
+    commentsSrc:
+      "\nComments:\nSubject to compulsory reservation\nspace for wheelchairs\nGlobal price\nNon-smoker train\nBar\ncompartment for nursing mothers / bottle-feeding\nWifi available\n",
+  },
+  {
+    trainNameSrc: "TGV 9706",
+    operatorSrc: "SNCF",
+    scheduleSrc: [
+      { sta: "Barcelona Sants", dep: "16:25" },
+      { sta: "Girona", dep: "17:07" },
+      { sta: "Figueres Vilafant", dep: "17:24" },
+      { sta: "Perpignan", arr: "17:47", dep: "18:00" },
+      { sta: "Narbonne", arr: "18:34", dep: "18:37" },
+      { sta: "Beziers", arr: "18:50", dep: "18:53" },
+      { sta: "Montpellier Saint-Roch", arr: "19:45", dep: "19:50" },
+      { sta: "Nîmes", arr: "20:16", dep: "20:20" },
+      { sta: "Valence TGV Rhône-Alpes Sud", arr: "21:05", dep: "21:08" },
+      { sta: "Paris Gare de Lyon", arr: "23:41" },
+    ],
+    validity: ["20241215", "20251213"],
+    runsSrc: "\nDays of operation:\nruns  3. until 10. Apr 2025 Mo - Th\n",
+    commentsSrc:
+      "\nComments:\nSubject to compulsory reservation\nspace for wheelchairs\nGlobal price\nNon-smoker train\nBar\ncompartment for nursing mothers / bottle-feeding\nWifi available\n",
+  },
+  {
+    trainNameSrc: "AVE 9725",
+    operatorSrc: "RENFE",
+    scheduleSrc: [
+      { sta: "Madrid-Puerta de Atocha", dep: "13:18" },
+      { sta: "Guadalajara-Yebes", arr: "13:44", dep: "13:46" },
+      { sta: "Zaragoza Delicias", arr: "14:43", dep: "14:46" },
+      { sta: "Camp de Tarragona", arr: "15:40", dep: "15:42" },
+      { sta: "Barcelona Sants", arr: "16:22", dep: "16:34" },
+      { sta: "Girona", arr: "17:13", dep: "17:16" },
+      { sta: "Figueres Vilafant", arr: "17:30", dep: "17:33" },
+      { sta: "Perpignan", arr: "18:00", dep: "18:06" },
+      { sta: "Narbonne", arr: "18:47", dep: "18:47" },
+      { sta: "Montpellier Saint-Roch", arr: "19:52", dep: "20:02" },
+      { sta: "Nîmes", arr: "20:32", dep: "20:32" },
+      { sta: "Avignon TGV", arr: "20:54", dep: "20:54" },
+      { sta: "Aix-en-Provence TGV", arr: "21:17", dep: "21:17" },
+      { sta: "Marseille-St-Charles", arr: "21:32" },
+    ],
+    validity: ["20241215", "20251213"],
+    runsSrc:
+      "\nDays of operation:\nruns  3. Apr until 23. Nov 2025; not 19., 20., 26. Apr, 5. Jul until 31. Aug 2025\n",
+    commentsSrc:
+      "\nComments:\nSubject to compulsory reservation\nspace for wheelchairs\nGlobal price\nCompartment for disabled travellers\n",
+  },
+  {
+    trainNameSrc: "TGV 9706",
+    operatorSrc: "SNCF",
+    scheduleSrc: [
+      { sta: "Barcelona Sants", dep: "16:25" },
+      { sta: "Girona", dep: "17:07" },
+      { sta: "Figueres Vilafant", dep: "17:24" },
+      { sta: "Perpignan", arr: "17:47", dep: "18:00" },
+      { sta: "Narbonne", arr: "18:34", dep: "18:37" },
+      { sta: "Beziers", arr: "18:50", dep: "18:53" },
+      { sta: "Montpellier Saint-Roch", arr: "19:45", dep: "19:50" },
+      { sta: "Nîmes", arr: "20:16", dep: "20:20" },
+      { sta: "Valence TGV Rhône-Alpes Sud", arr: "21:05", dep: "21:08" },
+      { sta: "Paris Gare de Lyon", arr: "23:41" },
+    ],
+    validity: ["20241215", "20251213"],
+    runsSrc: "\nDays of operation:\nruns  3. until 10. Apr 2025 Mo - Th\n",
+    commentsSrc:
+      "\nComments:\nSubject to compulsory reservation\nspace for wheelchairs\nGlobal price\nNon-smoker train\nBar\ncompartment for nursing mothers / bottle-feeding\nWifi available\n",
+  },
+];
