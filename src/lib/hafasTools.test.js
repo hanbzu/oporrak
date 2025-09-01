@@ -1,35 +1,19 @@
 import { expect, test } from "vitest";
 import { parseDates, parseRunDays } from "./hafasTools.js";
 
-// I want a javascript function that takes a string describing when a train runs and returns the information in a structured format with the following fields:
-// - period: Optional, with format ["YYYYMMDD", "YYYYMMDD"] where the validity range is specified
-// - pattern: Optional, with format "0000011" the 0s and 1s represent days of the week starting from Monday. This amends negativelly the validity range.
-// - also: amends the previous entry including exta days of operation in the format of array of either "YYYYMMDD" dates or ["YYYYMMDD", "YYYYMMDD"] periods.
-// - not: amends all the previous entries by removing the specified days of operation in the format of either "YYYYMMDD" dates or ["YYYYMMDD", "YYYYMMDD"] periods.
 const VALIDITY_PERIOD = ["20250101", "20251231"];
 
 test("Simple range", () =>
-  expect(parseDates("8. Mar until 19. Apr 2025", VALIDITY_PERIOD)).toEqual([
-    ["20250308", "20250419"],
-  ]));
+  expect(parseDates("8. Mar until 19. Apr 2025", VALIDITY_PERIOD)).toEqual([["20250308", "20250419"]]));
 
 test("Simple range, more omissions", () =>
-  expect(parseDates("7. until 11. Apr 2025", VALIDITY_PERIOD)).toEqual([
-    ["20250407", "20250411"],
-  ]));
+  expect(parseDates("7. until 11. Apr 2025", VALIDITY_PERIOD)).toEqual([["20250407", "20250411"]]));
 
 test("Simple range, previous year", () =>
-  expect(parseDates("5. Jan 2024 until 20. Apr", VALIDITY_PERIOD)).toEqual([
-    ["20240105", "20250420"],
-  ]));
+  expect(parseDates("5. Jan 2024 until 20. Apr", VALIDITY_PERIOD)).toEqual([["20240105", "20250420"]]));
 
 test("Tricky list of dates, no year provided", () =>
-  expect(
-    parseDates("25. Dec, 1. Jan, 14., 17., 21., 24. Feb", [
-      "20241216",
-      "20250411",
-    ]),
-  ).toEqual([
+  expect(parseDates("25. Dec, 1. Jan, 14., 17., 21., 24. Feb", ["20241216", "20250411"])).toEqual([
     "20241225",
     "20250101",
     "20250214",
@@ -40,18 +24,8 @@ test("Tricky list of dates, no year provided", () =>
 
 test("Now combined", () =>
   expect(
-    parseDates(
-      "9. Mar, 16. until 20. Mar 2025, 23. Mar, 7. until 11. Apr 2025, 14., 18. Apr",
-      VALIDITY_PERIOD,
-    ),
-  ).toEqual([
-    "20250309",
-    ["20250316", "20250320"],
-    "20250323",
-    ["20250407", "20250411"],
-    "20250414",
-    "20250418",
-  ]));
+    parseDates("9. Mar, 16. until 20. Mar 2025, 23. Mar, 7. until 11. Apr 2025, 14., 18. Apr", VALIDITY_PERIOD),
+  ).toEqual(["20250309", ["20250316", "20250320"], "20250323", ["20250407", "20250411"], "20250414", "20250418"]));
 
 test("case A", () =>
   expect(
@@ -62,20 +36,11 @@ test("case A", () =>
   ).toEqual({
     period: ["20250308", "20250419"],
     pattern: "0000010",
-    also: [
-      "20250309",
-      ["20250316", "20250320"],
-      "20250323",
-      ["20250407", "20250411"],
-      "20250414",
-      "20250418",
-    ],
+    also: ["20250309", ["20250316", "20250320"], "20250323", ["20250407", "20250411"], "20250414", "20250418"],
   }));
 
 test("case B", () =>
-  expect(
-    parseRunDays("runs 8. Mar until 20. Apr 2025 Sa, Su", VALIDITY_PERIOD),
-  ).toEqual({
+  expect(parseRunDays("runs 8. Mar until 20. Apr 2025 Sa, Su", VALIDITY_PERIOD)).toEqual({
     period: ["20250308", "20250420"],
     pattern: "0000011",
   }));
@@ -89,14 +54,7 @@ test("case C", () =>
   ).toEqual({
     period: ["20241216", "20250411"],
     pattern: "1111100",
-    not: [
-      "20241225",
-      "20250101",
-      "20250214",
-      "20250217",
-      "20250221",
-      "20250224",
-    ],
+    not: ["20241225", "20250101", "20250214", "20250217", "20250221", "20250224"],
   }));
 
 test("case D", () =>

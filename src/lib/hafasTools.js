@@ -1,19 +1,16 @@
-// "runs 16. Dec 2024 until 11. Apr 2025 Mo - Fr; not 25. Dec, 1. Jan, 14., 17., 21., 24. Feb"
+// Example: "runs 16. Dec 2024 until 11. Apr 2025 Mo - Fr; not 25. Dec, 1. Jan, 14., 17., 21., 24. Feb"
 
+/** Will extract a complex phrase specifying when this train runs */
 export function parseRunDays(text, validityPeriod) {
   let period = validityPeriod; // Keep track of it to autocomplete YYYYs
   return text
     .split(";")
     .map((d) => d.trim())
     .flatMap((d) => {
-      if (d.startsWith("5    10   15   20   25   30"))
-        return [{ k: "also", v: gridParse(d, validityPeriod) }];
-      else if (d.startsWith("not "))
-        return [{ k: "not", v: parseDates(d.substring(4), period) }];
-      else if (d.startsWith("runs daily, not"))
-        return [{ k: "not", v: parseDates(d.substring(16), period) }];
-      else if (d.startsWith("also "))
-        return [{ k: "also", v: parseDates(d.substring(5), period) }];
+      if (d.startsWith("5    10   15   20   25   30")) return [{ k: "also", v: gridParse(d, validityPeriod) }];
+      else if (d.startsWith("not ")) return [{ k: "not", v: parseDates(d.substring(4), period) }];
+      else if (d.startsWith("runs daily, not")) return [{ k: "not", v: parseDates(d.substring(16), period) }];
+      else if (d.startsWith("also ")) return [{ k: "also", v: parseDates(d.substring(5), period) }];
       else if (d.startsWith("runs ")) {
         const splitIndex = indexOfWeekdayTag(d); // Where do days of the week begin?
         if (splitIndex === -1) {
@@ -39,8 +36,7 @@ function indexOfWeekdayTag(inputStr) {
   let lowestIndex = -1;
   WEEKDAYS.forEach((wd) => {
     const index = inputStr.indexOf(wd);
-    if (index !== -1 && (lowestIndex === -1 || index < lowestIndex))
-      lowestIndex = index;
+    if (index !== -1 && (lowestIndex === -1 || index < lowestIndex)) lowestIndex = index;
   });
   return lowestIndex;
 }
@@ -50,15 +46,9 @@ function parsePattern(inputStr) {
   const maybeRange = inputStr.split("-").map((d) => d.trim());
   const list =
     maybeRange.length === 2 // It was a range, convert it to a list
-      ? WEEKDAYS.slice(
-          WEEKDAYS.indexOf(maybeRange[0]),
-          WEEKDAYS.indexOf(maybeRange[1]) + 1,
-        )
+      ? WEEKDAYS.slice(WEEKDAYS.indexOf(maybeRange[0]), WEEKDAYS.indexOf(maybeRange[1]) + 1)
       : inputStr.split(",").map((d) => d.trim()); // It was an actual list
-  return WEEKDAYS.reduce(
-    (acc, wd) => acc + (list.includes(wd) ? "1" : "0"),
-    "",
-  );
+  return WEEKDAYS.reduce((acc, wd) => acc + (list.includes(wd) ? "1" : "0"), "");
 }
 
 /** Extracts dates and date ranges */
@@ -88,9 +78,7 @@ function getDateRange(inputStr, yearDict) {
     (fromYear ?? toYear ?? yearDict[MONTHS[fromMonth ?? toMonth]]) + // Omission may mean it's at the end
       MONTHS[fromMonth ?? toMonth] + // Omission may mean it's at the end
       fromDay.padStart(2, "0"),
-    (toYear ?? yearDict[MONTHS[toMonth]]) +
-      MONTHS[toMonth] +
-      toDay.padStart(2, "0"),
+    (toYear ?? yearDict[MONTHS[toMonth]]) + MONTHS[toMonth] + toDay.padStart(2, "0"),
   ];
 }
 
